@@ -67,7 +67,7 @@ if helpByCss is not None:
     print('***********************************************************')
 
 print('Amazon Forgot your Password:')
-forgotById = driver.find_element(By.ID, 'auth-fpp-link-bottom' )
+forgotById = driver.find_element(By.ID, 'auth-fpp-link-bottom')
 if forgotById is not None:
     print('We found "Forgot your Password" element by ID')
 
@@ -81,7 +81,7 @@ if forgotByCss is not None:
     print('***********************************************************')
 
 print('Amazon Other issues with Sign-In link:')
-otherById = driver.find_element(By.ID, 'ap-other-signin-issues-link' )
+otherById = driver.find_element(By.ID, 'ap-other-signin-issues-link')
 if otherById is not None:
     print('We found "Other issues with Sign-In" Link element by ID')
 

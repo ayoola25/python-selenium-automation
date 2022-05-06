@@ -7,11 +7,9 @@ driver.maximize_window()
 
 driver.get('https://www.amazon.com')
 
-search_field = driver.find_element(By.ID, 'twotabsearchtextbox')
-search_field.send_keys('coffee')
+driver.find_element(By.ID, 'twotabsearchtextbox').send_keys('coffee')
 
-search_click = driver.find_element(By.ID, 'nav-search-submit-button')
-search_click.click()
+driver.find_element(By.ID, 'nav-search-submit-button').click()
 
 expected_result = '"coffee"'
 actual_result = driver.find_element(By.XPATH, "//span[@class = 'a-color-state a-text-bold']").text

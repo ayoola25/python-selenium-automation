@@ -2,11 +2,17 @@
 Feature: Test for Amazon search
   # Enter feature description here
 
-  Scenario: User can search for a product
-    Given Open Amazon
-    When Search for "coffee"
-    And Click on search icon
-    Then Verify search results are shown
+  Scenario: Verify that user can search for table
+    Given Open Amazon page
+    When Search for table
+    Then Verify search results for "table" are shown
+
+  Scenario: Verify that user can search for dress
+    Given Open Amazon page
+    When Search for dress
+    Then Verify search results for "dress" are shown
+
+
 
 
 
