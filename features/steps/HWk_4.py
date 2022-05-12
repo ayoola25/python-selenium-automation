@@ -1,0 +1,12 @@
+from selenium.webdriver.common.by import By
+from behave import given, when, then
+from time import sleep
+
+SEARCH_INPUT = (By.ID, 'twotabsearchtextbox')
+SEARCH_BTN = (By.ID, 'nav-search-submit-button')
+
+
+@when('Search for {search_word}')
+def search_amazon(context, search_word):
+    context.driver.find_element(*SEARCH_INPUT).send_keys(search_word)
+    context.driver.find_element(*SEARCH_BTN).click()
