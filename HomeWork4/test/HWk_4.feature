@@ -1,7 +1,7 @@
 # Created by EZ-Trainer at 5/9/2022
 Feature: Test for Added Product
 
-   Scenario: Verify that user can search for dress
+   Scenario: Verify that user can see searched product in cart
     Given Open Amazon page
     When Search for glass cups
     And Click on the first product

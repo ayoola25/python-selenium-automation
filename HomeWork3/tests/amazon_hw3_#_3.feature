@@ -3,7 +3,7 @@ Feature: Test for Amazon cart icon
 
 
    Scenario: Verify that user can see that Amazon cart is empty
-    Given Navigate to Amazon page
+    Given Open Amazon page
     When click on Cart
     Then Verify click result Your Amazon Cart is empty is shown
 
