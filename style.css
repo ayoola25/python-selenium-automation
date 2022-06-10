@@ -1,0 +1,33 @@
+body{
+    background: lemonchiffon;
+}
+
+h1{
+    color: black;
+}
+
+div.pasta_div {
+    background: floralwhite;
+}
+
+div{
+    padding: 5px;
+}
+
+div#header {
+    background-color: lightgreen;
+    color: black;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+h2{
+    color: darkgreen;
+    font-size:26px;
+    font-family: "Arial Rounded MT Bold";
+}
+
+hr{
+    border-top: 2px solid black;
+    width: 800px;
+}
