@@ -5,7 +5,6 @@ from time import sleep
 SEARCH_INPUT = (By.ID, 'twotabsearchtextbox')
 SEARCH_BTN = (By.ID, 'nav-search-submit-button')
 
-
 @given('Open Amazon page')
 def open_amazon(context):
     context.driver.get('https://www.amazon.com/')
@@ -15,6 +14,7 @@ def open_amazon(context):
 def search_amazon(context, search_word):
     context.driver.find_element(*SEARCH_INPUT).send_keys(search_word)
     context.driver.find_element(*SEARCH_BTN).click()
+
 
 
 
