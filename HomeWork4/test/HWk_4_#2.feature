@@ -1,7 +1,7 @@
 Feature: Test for Added Product
 
-# Created by EZ-Trainer at 5/9/2022
-   Scenario: Verify that user can add product to the cart
+  # Created by EZ-Trainer at 5/9/2022
+  Scenario: Verify that user can add product to the cart
     Given Open Amazon page
     When Search for glass cups
     And Click on the first product
