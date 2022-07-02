@@ -1,6 +1,5 @@
 # Created by EZ-Trainer at 4/16/2022
 Feature: Test for Amazon search
-  # Enter feature description here
 
   Scenario: Verify that user can search for table
     Given Open Amazon page
