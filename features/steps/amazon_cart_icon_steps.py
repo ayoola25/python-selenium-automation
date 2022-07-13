@@ -7,7 +7,8 @@ ICON_BTN = (By.XPATH, "//div[@id='nav-cart-count-container']//span[@class='nav-c
 
 @when('click on cart_icon')
 def click_on(context):
-    context.driver.find_element(*ICON_BTN).click()
+    # context.driver.find_element(*ICON_BTN).click()
+    context.app.header.click_on_cart_icon()
 
 
 

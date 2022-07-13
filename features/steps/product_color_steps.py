@@ -5,12 +5,20 @@ from behave import given, when, then
 from time import sleep
 
 
+PRODUCT_NAME = (By.ID, 'productTitle')
 COLOR_OPTIONS = (By.CSS_SELECTOR, "#inline-twister-expander-content-color_name li[class*='desktop']")
 COLOR_NAME = (By.ID, 'inline-twister-expanded-dimension-text-color_name')
+
 
 @given('Open Amazon product {product_id} page')
 def open_product(context, product_id):
     context.driver.get(f'https://www.amazon.com/dp/{product_id}/')
+
+
+@when('Store product name')
+def get_product_name(context):
+    context.product_name = context.driver.find_element(*PRODUCT_NAME).text
+    print(f'Current product: {context.product_name}')
 
 
 @then('Verify user can click through colors')

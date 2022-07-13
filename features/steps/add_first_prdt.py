@@ -9,9 +9,9 @@ ADD_TO_CART_BUTTON = (By.ID, 'add-to-cart-button')
 def click_first_product(context):
     context.driver.find_element(*PRODUCT_PRICE).click()
 
+
 @when('Click on Add to cart button')
 def click_add_to_cart(context):
     context.driver.find_element(*ADD_TO_CART_BUTTON).click()
     sleep(1)
-
 
