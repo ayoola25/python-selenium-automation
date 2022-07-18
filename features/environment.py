@@ -1,6 +1,10 @@
 import allure
+from allure import attach
 from allure_commons.types import AttachmentType
 from app.application import Application
+
+from reporting.browserstack_api import BSSession
+from support.get_env import get_bs_key, get_bs_user
 
 from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
@@ -10,7 +14,7 @@ from support.logger import logger, MyListener
 
 # Register for BrowserStack, then grab it from https://www.browserstack.com/accounts/settings
 bs_user = 'ayoolaladapo_cqjdJk'
-bs_pw = 'RSznsSS9fUaLbubKiZk6'
+bs_key = 'RSznsSS9fUaLbubKiZk6'
 
 # Allure command:
 # behave -f allure_behave.formatter:AllureFormatter -o test_results/ features/tests/product_page.feature
@@ -45,7 +49,7 @@ def browser_init(context, test_name):
         'browserstack.local': 'false',
         'name': test_name
     }
-    url = f'http://{bs_user}:{bs_pw}@hub-cloud.browserstack.com/wd/hub'
+    url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
     context.driver = webdriver.Remote(url, desired_capabilities=desired_cap)
 
     context.driver.maximize_window()
@@ -63,18 +67,30 @@ def before_scenario(context, scenario):
 
 def before_step(context, step):
     print('\nStarted step: ', step)
-    logger.info(f'Started stop: {step}')
+    logger.info(f'Started step: {step.name}')
 
 
 def after_step(context, step):
     if step.status == 'failed':
-        logger.error(f'Step failed: {step}')
-        # print('\nStep failed: ', step)
+        print('\nStep failed: ', step)
+        logger.error(f'Step failed: {step.name}')
+        # Attach a screenshot to Allure report in case the step fails
+        attach(
+            context.driver.get_screenshot_as_png(),
+            name=f'{step.name}.png',
+            attachment_type=AttachmentType.PNG
+        )
         # Mark test case as FAILED on BrowserStack:
         context.driver.execute_script(
             'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "Step failed"}}')
 
 
 def after_scenario(context, feature):
+    bs_session = BSSession(get_bs_user(), bs_key, context.driver.session_id)
+    bs_link = bs_session.get_browser_url()
+    #  If run via BS, attach link to a remote BS session to the report
+    attach(bs_link, name='BrowserStack Session', attachment_type=AttachmentType.URI_LIST)
+
     context.driver.delete_all_cookies()
     context.driver.quit()
+    logger.info('Scenario finished.\n\n')

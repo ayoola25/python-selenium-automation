@@ -20,13 +20,10 @@ class Page:
     def input_text(self, text, *locator):
         self.driver.find_element(*locator).send_keys(text)
 
-    def verify_text(self, text, *locator):
-        current_text = self.driver.find_element(*locator).text
+    def verify_text(self, expected_text, *locator):
+        actual_text = self.driver.find_element(*locator).text
         assert expected_text == actual_text, \
             f"Error! Actual text {actual_text} did not match Expected {expected_text}"
-
-        # assert current_text == text, f'Expected {text}, but got {current_text}'
-        #assert current_text == text
 
     def find_element(self, *locator):
         return self.driver.find_element(*locator)
@@ -40,6 +37,7 @@ class Page:
         e.send_keys(text)
 
     def open_page(self, end_url=''):
+        print(f'{self.base_url}{end_url}')
         logger.info(f'Opening {self.base_url}{end_url}...')
         self.driver.get(f'{self.base_url}{end_url}')
 
@@ -56,6 +54,9 @@ class Page:
     def verify_text(self, expected_text, *locator):
         actual_text = self.driver.find_element(*locator).text
         assert expected_text == actual_text, f'Expected {expected_text}, but got {actual_text}'
+
+    def wait_for_url_change(self):
+        return self.wait.until(EC.url_changes)
 
     def verify_url_contains_query(self, query):
         assert query in self.driver.current_url, f'{query} not in {self.driver.current_url}'

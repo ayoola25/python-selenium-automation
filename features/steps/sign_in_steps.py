@@ -4,6 +4,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
 
 # ORDERS_LNK = (By.CSS_SELECTOR, "a[href*='/gp/css/order-history?ref_=nav_orders_first']")
+from features.steps.amazon_main_page_steps import SIGN_IN_BTN
+
 SEARCH_RESULT_TEXT = (By.NAME, 'Sign-In')
 
 
@@ -12,8 +14,31 @@ def click_on(context):
     # context.driver.find_element(*ORDERS_LNK).click()
     context.app.header.click_orders_link()
 
+
+@when('Click on button from SignIn popup')
+def click_sign_in_btn(context):
+    sign_in_btn = context.driver.wait.until(
+        EC.element_to_be_clickable(SIGN_IN_BTN), 'Sign in btn not clickable'
+    )
+    sign_in_btn.click()
+
+
+@when('wait for {seconds} seconds')
+def wait_sec(context, seconds):
+    sleep(int(seconds)) # "5" => 5
+
+
 @then('Verify Sign In page is opened')
 def verify_signin_opened(context):
-    # context.driver.wait.until(EC.url_contains('https://www.amazon.com/ap/signin?_encoding=UTF8&accountStatusPolicy=P1&openid.assoc_handle=usflex&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.mode=checkid_setup&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.ns.pape=http%3A%2F%2Fspecs.openid.net%2Fextensions%2Fpape%2F1.0&openid.pape.max_auth_age=0&openid.return_to=https%3A%2F%2Fwww.amazon.com%2Fgp%2Fcss%2Forder-history%3Fie%3DUTF8%26ref_%3Dnav_orders_first&pageId=webcs-yourorder&showRmrMe=1'))
+    # context.driver.wait.until(EC.url_contains('https://www.amazon.com/ap/signin'), message = 'Sign In page never opened')
     context.app.signin_page.verify_signin_page_is_opened()
 
+
+@then('SignIn popup is present')
+def verify_signin_popup_present(context):
+    context.driver.wait.until(EC.element_to_be_clickable(SIGN_IN_BTN), 'Sign in btn not clickable')
+
+
+@then('SignIn popup disappears')
+def verify_signin_popup_not_present(context):
+    context.driver.wait.until(EC.element_to_be_clickable(SIGN_IN_BTN), 'Sign in btn did not disappear')

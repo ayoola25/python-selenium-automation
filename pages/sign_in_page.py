@@ -1,4 +1,4 @@
-from old_base_page import Page
+from pages.base_page import Page
 
 
 class SignInPage(Page):

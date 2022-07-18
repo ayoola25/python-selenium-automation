@@ -12,6 +12,18 @@ Feature: Test for Amazon searches
 #    |dress       |"dress"       |
 #    |spoon       |"spoon"       |
 
+#   Scenario Outline: Verify that user sees correct error message
+#    Given Open Amazon page
+#    When Enter username <username>
+#    When Enter password <password>
+#    When Click login btn
+#    Then Verify correct error <error_message> shown
+#    Examples:
+#    |username       |password  |error_message  |
+#    |test@test.com  |hgsfdrea  |invalid_credentials |
+#    |test@test.com  |          |Password is required                                                                              |
+
+
   Scenario: User sees ham menu btn on the main page
     Given Open Amazon page
     When Search for dress

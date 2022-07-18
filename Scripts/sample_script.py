@@ -23,16 +23,19 @@ driver.get('https://www.google.com/')
 search = driver.find_element(By.NAME, 'q')
 search.clear()
 search.send_keys('Dress')
+search.send_keys('Car')
 
 # wait for 4 sec
 # sleep(4)
-driver.wait.until(EC.element_to_be_clickable((By.NAME, 'btnK')))
+driver.wait.until(EC.element_to_be_clickable((By.NAME, 'btnK')), message='Search btn not clickable')
 
 # click search
 driver.find_element(By.NAME, 'btnK').click()
 
 # verify
 assert 'dress' in driver.current_url.lower(), f"Expected query not in {driver.current_url.lower()}"
+assert 'car' in driver.current_url.lower(), f"Expected query not in {driver.current_url.lower()}"
 print('Test Passed')
 
 driver.quit()
+

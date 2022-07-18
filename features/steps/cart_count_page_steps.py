@@ -3,7 +3,7 @@ from behave import given, when, then
 from time import sleep
 
 CART = (By.ID, "nav-cart-count")
-PRODUCT_NAME = ()
+
 
 @when('Open cart page')
 def open_cart_page(context):

@@ -25,3 +25,7 @@ def click_thru_top(context):
     for x in range(len(five_links)):
         link_to_click = context.driver.find_elements(*FIVE_LINKS)[x]
         link_text = link_to_click.text
+        link_to_click.click()
+        sleep(1)
+        header_test = context.driver.find_element(*HEADER).text
+        assert link_text in header_test, f'Expected {link_text} to be in {header_test}'

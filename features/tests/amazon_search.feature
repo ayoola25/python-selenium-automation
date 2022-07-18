@@ -11,6 +11,16 @@ Feature: Test for Amazon search
     When Search for dress
     Then Verify search results for "dress" are shown
 
+  Scenario: User can see language options
+    Given Open Amazon page
+    When Hover over language options
+    Then Verify Spanish option present
+
+  Scenario: User can select and search in a department
+    Given Open Amazon page
+    When Select books department
+    And Search for Faust
+    Then Verify books department is selected
 
 
 

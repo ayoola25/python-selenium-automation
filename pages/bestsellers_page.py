@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 
-from old_base_page import Page
+from pages.base_page import Page
 
 
 class BestsellersPage(Page):
@@ -13,4 +13,4 @@ class BestsellersPage(Page):
     def verify_links_present(self, expected_links):
         actual_links = self.driver.find_elements(*self.FIVE_LINKS)
         assert len(actual_links) == int(expected_links), \
-            f'Expected! {expected_links} but got {actual_links}'
+            f'Expected! {expected_links} links, but got {len(actual_links)}'
