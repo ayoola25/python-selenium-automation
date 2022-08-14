@@ -10,10 +10,10 @@ driver.find_element(By.CSS_SELECTOR, '#twotabsearchtextbox')
 driver.find_element(By.CSS_SELECTOR, "input#twotabsearchtextbox")
 
 # By Classes Use tag dot or no tag
-# 1 class
+# for 1 class
 driver.find_element(By.CSS_SELECTOR, "span.icp-nav-flag-us")
 driver.find_element(By.CSS_SELECTOR, ".icp-nav-flag-us")
-# by multiple classes. Connect multiple classes with dots
+# for multiple classes. Connect multiple classes with dots
 driver.find_element(By.CSS_SELECTOR, "span.icp-nav-flag.icp-nav-flag-us")
 driver.find_element(By.CSS_SELECTOR, ".icp-nav-flag.icp-nav-flag-us")
 
@@ -24,8 +24,9 @@ driver.find_element(By.CSS_SELECTOR, "[data-csa-c-content-id='nav_cs_bestsellers
 # Can use more than one attr. All written together in [][]
 driver.find_element(By.CSS_SELECTOR, "a[href='/gp/bestsellers/?ref_=nav_cs_bestsellers'][data-csa-c-content-id='nav_cs_bestsellers']")
 
-# By class and attr. Use tag dot and attr in []. Can also use tag and attr in [] without the dot
+# By class and attr. Use tag dot and attr in [].
 driver.find_element(By.CSS_SELECTOR, "a.nav-a[data-csa-c-content-id='nav_cs_bestsellers']")
+# Can also use tag and attr in [] without the dot
 driver.find_element(By.CSS_SELECTOR, "a[data-csa-c-content-id='nav_cs_bestsellers'].nav-a")
 
 # By id and attr. Use # to rep. id and attr in []

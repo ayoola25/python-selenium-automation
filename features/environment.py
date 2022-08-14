@@ -13,8 +13,8 @@ from selenium.webdriver.support.events import EventFiringWebDriver
 from support.logger import logger, MyListener
 
 # Register for BrowserStack, then grab it from https://www.browserstack.com/accounts/settings
-bs_user = 'ayoolaladapo_cqjdJk'
-bs_key = 'RSznsSS9fUaLbubKiZk6'
+# bs_user = 'ayoolaladapo_cqjdJk'
+# bs_key = 'RSznsSS9fUaLbubKiZk6'
 
 # Allure command:
 # behave -f allure_behave.formatter:AllureFormatter -o test_results/ features/tests/product_page.feature
@@ -25,7 +25,7 @@ def browser_init(context, test_name):
     :param context: Behave context
     :param test_name: scenario.name
     """
-    # context.driver = webdriver.Chrome(executable_path="./chromedriver")
+    context.driver = webdriver.Chrome(executable_path="./chromedriver")
     # context.driver = webdriver.Firefox(executable_path='C:\\Users\\EZ-Trainer\\Desktop\\python-selenium-automation\\geckodriver.exe')
     # context.driver = webdriver.Safari()
 
@@ -41,16 +41,16 @@ def browser_init(context, test_name):
     # context.driver = EventFiringWebDriver(webdriver.Chrome(chrome_options = options), MyListener())
 
     ### for browerstack ###
-    desired_cap = {
-        'browser': 'Chrome',
-        'os': 'Windows',
-        'os_version': '10',
-        'browser_version': 'latest',
-        'browserstack.local': 'false',
-        'name': test_name
-    }
-    url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
-    context.driver = webdriver.Remote(url, desired_capabilities=desired_cap)
+    # desired_cap = {
+    #     'browser': 'Chrome',
+    #     'os': 'Windows',
+    #     'os_version': '10',
+    #     'browser_version': 'latest',
+    #     'browserstack.local': 'false',
+    #     'name': test_name
+    # }
+    # url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
+    # context.driver = webdriver.Remote(url, desired_capabilities=desired_cap)
 
     context.driver.maximize_window()
     context.driver.implicitly_wait(5)
@@ -86,10 +86,10 @@ def after_step(context, step):
 
 
 def after_scenario(context, feature):
-    bs_session = BSSession(get_bs_user(), bs_key, context.driver.session_id)
-    bs_link = bs_session.get_browser_url()
-    #  If run via BS, attach link to a remote BS session to the report
-    attach(bs_link, name='BrowserStack Session', attachment_type=AttachmentType.URI_LIST)
+    # bs_session = BSSession(get_bs_user(), bs_key, context.driver.session_id)
+    # bs_link = bs_session.get_browser_url()
+    # #  If run via BS, attach link to a remote BS session to the report
+    # attach(bs_link, name='BrowserStack Session', attachment_type=AttachmentType.URI_LIST)
 
     context.driver.delete_all_cookies()
     context.driver.quit()
