@@ -13,8 +13,8 @@ from selenium.webdriver.support.events import EventFiringWebDriver
 from support.logger import logger, MyListener
 
 # Register for BrowserStack, then grab it from https://www.browserstack.com/accounts/settings
-# bs_user = 'ayoolaladapo_cqjdJk'
-# bs_key = 'RSznsSS9fUaLbubKiZk6'
+bs_user = 'ayoolaladapo_81yBFZ'
+bs_key = 'L9EXxsyy9wxVm8yS6zMU'
 
 # Allure command:
 # behave -f allure_behave.formatter:AllureFormatter -o test_results/ features/tests/product_page.feature
@@ -25,7 +25,7 @@ def browser_init(context, test_name):
     :param context: Behave context
     :param test_name: scenario.name
     """
-    context.driver = webdriver.Chrome(executable_path="./chromedriver")
+    # context.driver = webdriver.Chrome(executable_path="./chromedriver")
     # context.driver = webdriver.Firefox(executable_path='C:\\Users\\EZ-Trainer\\Desktop\\python-selenium-automation\\geckodriver.exe')
     # context.driver = webdriver.Safari()
 
@@ -36,15 +36,15 @@ def browser_init(context, test_name):
 
     ### EventFiringWebDriver - log file ###
     ### for drivers ###
-    # context.driver = EventFiringWebDriver(webdriver.Chrome(executable_path="./chromedriver"), MyListener())
+    context.driver = EventFiringWebDriver(webdriver.Chrome(executable_path="./chromedriver"), MyListener())
     # for headless mode ###
     # context.driver = EventFiringWebDriver(webdriver.Chrome(chrome_options = options), MyListener())
 
     ### for browerstack ###
     # desired_cap = {
-    #     'browser': 'Chrome',
-    #     'os': 'Windows',
-    #     'os_version': '10',
+    #     'browser': 'Firefox',
+    #     'os': 'OS X',
+    #     'os_version': 'Big Sur',
     #     'browser_version': 'latest',
     #     'browserstack.local': 'false',
     #     'name': test_name
